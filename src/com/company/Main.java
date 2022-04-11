@@ -5,14 +5,58 @@ import java.util.Scanner;
 
 public class Main {
     private static final List<Movies> movies = JsonIO.getMovies();
-    private static SortAble s = (SortAble) new MovieStore();
-    private static FindAble f = (FindAble) new FindByMap();
+    private static MovieStore movieStore = new MovieStore();
+    private static FindAble findAble =  new FindByMap();
     private static Scanner in = new Scanner(System.in);
+    private static Scanner str = new Scanner(System.in);
 
     public static void main(String[] args) throws InputException {
-//        while (true) {
-//            start();
-//        }
+        while (true) {
+
+            commads();
+
+            int nextInt = in.nextInt();
+
+            switch (nextInt) {
+                case 1:
+                    movieStore.printAllMovies(movies);
+                    break;
+                case 2:
+                    String str2 = str.nextLine();
+                    movieStore.findMovie(movies, str2);
+                    break;
+                case 3:
+                    movieStore.sortByYear(movies);
+                    break;
+                case 4:
+                    movieStore.sortByName(movies);
+                    break;
+                case 5:
+                    movieStore.sortByDirector(movies);
+                    break;
+                case 6:
+                    String str3 = str.nextLine();
+                    findAble.findMoviesByActor(movies, str3);
+                    break;
+                case 7:
+                    String str4 = str.nextLine();
+                    findAble.findMoviesByDirector(movies, str4);
+                    break;
+                case 8:
+                    int in2 = in.nextInt();
+                    findAble.findMoviesByYear(movies, in2);
+                    break;
+                case 9:
+                    String str5 = str.nextLine();
+                    findAble.findMoviesAndRoleByActor(movies, str5);
+                    break;
+                case 10:
+                    findAble.showActorRoles(movies);
+                    break;
+            }
+
+        }
+
     }
 
 
